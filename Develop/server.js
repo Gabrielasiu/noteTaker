@@ -57,6 +57,12 @@ app.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received`);
   });
 
+
+const notesRouter = require('./routes/notes')
+
+
+app.use('/notes', notesRouter);
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
