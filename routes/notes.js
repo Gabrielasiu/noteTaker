@@ -11,6 +11,7 @@ const app = express();
 // NO SE SI AQUI SE TIENE QUE DEJAR AQUI O LO DEJO ALLÁ 
 
 
+
 app.get('/notes', (req, res) => {
     // Let the client know that their request was received
     res.json(`${req.method} request received`);

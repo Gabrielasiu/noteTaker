@@ -14,7 +14,7 @@ const app = express();
 // // Middleware for parsing JSON and urlencoded form data
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
-// app.use('/api', api);
+
 
 
 //what the user will see
@@ -34,7 +34,7 @@ app.get('*', (req, res) =>
 //GET API NOTES DBJSON
 //NOSE SI EL PARAMETRO NOTES DATA ES CORERCTO
 
-app.get('/api/notes', (req, res) => {
+app.get('/notes', (req, res) => {
     // Let the client know that their request was received
     res.json(`${req.method} request received`);
   
@@ -46,7 +46,7 @@ app.get('/api/notes', (req, res) => {
   });
 
 // POST API NOTES DBJSON
-app.post('/api/notes', (req, res) => {
+app.post('/notes', (req, res) => {
     // Let the client know that their POST request was received
     res.json(`${req.method} request received`);
   
