@@ -2,9 +2,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-const { clearScreenDown } = require('readline');
-// const api = require('./routes/index.js');
-// const notesRouter = require('./notes');
+const { v4: uuidv4 } = require('uuid');
 const PORT = process.env.PORT || 3001;
 
 const app = express();
@@ -13,56 +11,68 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// app.use('api/notes', notesRouter);
 
 //what the user will see
 app.use(express.static('public'));
 
 
 // GET Route for NOTES HTML
-app.get('/notes', (req, res) => { 
+app.get('/notes', (req, res) => {
 
   res.sendFile(path.join(__dirname, '/public/notes.html'))
-  
+
 });
 
 
-
-// //GET API NOTES DBJSON
-// //NOSE SI EL PARAMETRO NOTES DATA ES CORERCTO
+//GET API NOTES DBJSON
 
 app.get('/api/notes', (req, res) => {
-    
+
   fs.readFile('./db/db.json', (err, results) => {
-     if (err) {
+    if (err) {
       throw err
-     }
-let listedNotes = JSON.parse(results);
-console.log("notes", listedNotes);
-res.json(listedNotes);
+    }
+    let listedNotes = JSON.parse(results);
+    // console.log("notes", listedNotes);
+    res.json(listedNotes);
 
   })
 });
 
-//POST 
+//POST Route 
 
 app.post('/api/notes', (req, res) => {
 
-  console.log("this is the new note", req.body);
- 
+  let newNote = req.body;
+  console.log("newnote:", newNote);
+  newNote.id = uuidv4();
 
-});
+  let notes = [];
+  try {
+    const data = fs.readFileSync('./db/db.json', 'utf8');
+    notes = JSON.parse(data);
+  } catch (err) {
+    notes = [];
+  }
+
+  notes.push(newNote);
+  fs.writeFileSync('./db/db.json', JSON.stringify(notes, null, 2));
+
+  res.json(newNote);
+
+  console.log("this is the new note", req.body);
+})
+
+
+
 
 // // GET Route INDEX HTML
 
 app.get('*', (req, res) => { // el * siempre se pone abajo 
 
   res.sendFile(path.join(__dirname, '/public/index.html'))
- });
+});
 
-
-
-// const notesRouter = require('./routes/notes')
 
 
 app.listen(PORT, () =>
