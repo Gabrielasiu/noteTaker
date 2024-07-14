@@ -13,13 +13,13 @@ app.use(express.urlencoded({ extended: true }));
 
 
 //what the user will see
-app.use(express.static('public'));
+app.use(express.static('src'));
 
 
 // GET Route for NOTES HTML
 app.get('/notes', (req, res) => {
 
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
+  res.sendFile(path.join(__dirname, '/src/notes.html'))
 
 });
 
@@ -70,7 +70,7 @@ app.post('/api/notes', (req, res) => {
 
 app.get('*', (req, res) => { // el * siempre se pone abajo 
 
-  res.sendFile(path.join(__dirname, '/public/index.html'))
+  res.sendFile(path.join(__dirname, '/src/index.html'))
 });
 
 
