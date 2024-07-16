@@ -5,6 +5,7 @@ NoteTaker app is and app created for any body who wants to take notes on anythin
 
 ## Links
 URL of the GitHub repository that contains the code: https://github.com/Gabrielasiu/noteTaker
+
 URL of the deployed application: https://notetaker-1-tub3.onrender.com
 
 ## Usage
