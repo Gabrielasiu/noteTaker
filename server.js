@@ -52,32 +52,16 @@ app.post('/api/notes', (req, res) => {
     const oldNotes = fs.readFileSync('./db/db.json', 'utf8'); //si hay notas en el archivo db.json, se guardarán en la variable oldNotes
     notes = JSON.parse(oldNotes);// se hará parse de las oldNotes y ya parseada se pasarán a la ariable notes(el nuevo arreglo)
   } catch (err) {
-    notes = []; 
+    notes = [];
 
-  notes.push(newNote); // se agregará la nueva nota al arreglo de oldNotes ya parseado (que ahora se llama notes)
-  fs.writeFileSync('./db/db.json', JSON.stringify(notes, null, 2)); //escribirá las notas + nueva nota en el archivo db.json Convierte el arreglo notes en una cadena de texto en formato JSON.
+    notes.push(newNote); // se agregará la nueva nota al arreglo de oldNotes ya parseado (que ahora se llama notes)
+    fs.writeFileSync('./db/db.json', JSON.stringify(notes, null, 2)); //escribirá las notas + nueva nota en el archivo db.json Convierte el arreglo notes en una cadena de texto en formato JSON.
 
-  res.json(newNote); //devuelve la nueva nota en formato json al cliente
+    res.json(newNote); //devuelve la nueva nota en formato json al cliente
 
-  console.log("this is the new note", req.body);
-}})
-
-//DELETE Route
-
-app.delete('/api/notes/:id', (req, res) => {
-  const noteId = [req.params.id];
-  
-
-
-//fs.readFile leer el archivo
-//delete note :id eliminar nota por su id
-//fs.writefile reescribir el archivo con la nota eliminada
-
-  // hacerla en offices hours 
-
-
+    console.log("this is the new note", req.body);
+  }
 })
-
 
 
 // // GET Route INDEX HTML
