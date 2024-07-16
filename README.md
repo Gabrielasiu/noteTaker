@@ -1,5 +1,5 @@
 ## noteTaker
-## Description
+# Description
 
 Welcome to my weather app. Using APIs, user will be able to search for any city and the app will display the temperature, wind, humidity and also the data in that city for the next 5 days.
 
